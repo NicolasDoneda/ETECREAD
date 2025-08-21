@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('rm')->unique(); //rm do aluno
+            $table->string('rm')->nullable()->unique(); // agora rm é opcional
+            $table->string('email')->unique();          // email obrigatório para admin
             $table->string('name');
             $table->string('password');
-            $table->enum('role',['aluno','admin'])->default('aluno');
-            $table->string('photo')->nullable(); //foto de perfil
+            $table->enum('role', ['aluno', 'admin'])->default('aluno');
+            $table->string('photo')->nullable();        // foto de perfil opcional
             $table->timestamps();
         });
 
